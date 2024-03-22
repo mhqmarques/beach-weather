@@ -1,0 +1,42 @@
+{
+  "name": "beach-weather",
+  "version": "1.0.0",
+  "description": "weather service to beaches",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "npm run build && node dist/src/index.js",
+    "start:dev": "ts-node-dev 'src/index.ts'",
+    "lint": "eslint ./src ./test --ext .ts",
+    "lint:fix": "eslint ./src ./test --ext .ts --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "typescript",
+    "api"
+  ],
+  "repository": {
+    "type": "git",
+    "directory": "git@github.com:mhqmarques/beach-weather.git"
+  },
+  "author": "Marlon Henrique Queroga Marques",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/module-alias": "^2.0.4",
+    "@types/node": "^20.11.30",
+    "@types/supertest": "^6.0.2",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/parser": "^7.3.1",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4",
+    "ts-jest": "^29.1.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.2"
+  },
+  "dependencies": {
+    "module-alias": "^2.2.3"
+  }
+}
