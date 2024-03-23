@@ -9,7 +9,10 @@
     "start:dev": "ts-node-dev 'src/index.ts'",
     "lint": "eslint ./src ./test --ext .ts",
     "lint:fix": "eslint ./src ./test --ext .ts --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:functional": "jest --projects ./test --runInBand",
+    "format:check": "prettier --check 'src/**/*.ts' 'test/**/*.ts'",
+    "format:fix": "prettier --write 'src/**/*.ts' 'test/**/*.ts'"
   },
   "keywords": [
     "nodejs",
@@ -23,6 +26,7 @@
   "author": "Marlon Henrique Queroga Marques",
   "license": "MIT",
   "devDependencies": {
+    "@types/express": "^4.17.21",
     "@types/jest": "^29.5.12",
     "@types/module-alias": "^2.0.4",
     "@types/node": "^20.11.30",
@@ -30,13 +34,18 @@
     "@typescript-eslint/eslint-plugin": "^7.3.1",
     "@typescript-eslint/parser": "^7.3.1",
     "eslint": "^8.57.0",
+    "eslint-plugin-simple-import-sort": "^12.0.0",
     "jest": "^29.7.0",
+    "prettier": "^3.2.5",
     "supertest": "^6.3.4",
     "ts-jest": "^29.1.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.4.2"
   },
   "dependencies": {
+    "@overnightjs/core": "^1.7.6",
+    "body-parser": "^1.20.2",
+    "express": "^4.19.1",
     "module-alias": "^2.2.3"
   }
 }
