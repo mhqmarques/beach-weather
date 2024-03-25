@@ -10,6 +10,8 @@
     "lint": "eslint ./src ./test --ext .ts",
     "lint:fix": "eslint ./src ./test --ext .ts --fix",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "test:unit": "jest",
+    "test:unit:watch": "jest --watch",
     "test:functional": "jest --projects ./test --runInBand",
     "format:check": "prettier --check 'src/**/*.ts' 'test/**/*.ts'",
     "format:fix": "prettier --write 'src/**/*.ts' 'test/**/*.ts'"
@@ -44,6 +46,7 @@
   },
   "dependencies": {
     "@overnightjs/core": "^1.7.6",
+    "axios": "^1.6.8",
     "body-parser": "^1.20.2",
     "express": "^4.19.1",
     "module-alias": "^2.2.3"

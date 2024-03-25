@@ -1,0 +1,22 @@
+[
+  {
+    "swellDirection": 185.07,
+    "swellHeight": 0.43,
+    "swellPeriod": 4.93,
+    "time": "2024-03-23T00:00:00+00:00",
+    "waveDirection": 219.84,
+    "waveHeight": 0.76,
+    "windDirection": 264.71,
+    "windSpeed": 6.8
+  },
+  {
+    "swellDirection": 185.57,
+    "swellHeight": 0.41,
+    "swellPeriod": 4.96,
+    "time": "2024-03-23T01:00:00+00:00",
+    "waveDirection": 222.75,
+    "waveHeight": 0.75,
+    "windDirection": 265.04,
+    "windSpeed": 6.72
+  }
+]
