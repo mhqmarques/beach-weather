@@ -1,6 +1,6 @@
 import { InternalError } from '@src/util/errors/internal-error';
-import config, { IConfig } from 'config';
 import * as HTTPUtil from '@src/util/request';
+import config, { IConfig } from 'config';
 
 export interface StormGlassPointSource {
   [key: string]: number;
@@ -72,13 +72,13 @@ export class StormGlassClient {
         );
       return this.normalizedResponse(response.data);
     } catch (error) {
-      const err = error as any;
-      if (HTTPUtil.Request.isRequestError(err)) {
+      if (error instanceof Error && HTTPUtil.Request.isRequestError(error)) {
+        const err = HTTPUtil.Request.extractErrorData(error);
         throw new StormGlassResponseError(
-          `Error: ${JSON.stringify(err.response.data)} Code: ${err.response.status}`
+          `Error: ${JSON.stringify(err.data)} Code: ${err.status}`
         );
       }
-      throw new ClientRequestError(err.message);
+      throw new ClientRequestError(JSON.stringify(error));
     }
   }
 
