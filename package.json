@@ -9,7 +9,7 @@
     "start:dev": "ts-node-dev 'src/index.ts'",
     "lint": "eslint ./src ./test --ext .ts",
     "lint:fix": "eslint ./src ./test --ext .ts --fix",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run test:unit && npm run test:functional",
     "test:unit": "jest",
     "test:unit:watch": "jest --watch",
     "test:functional": "jest --projects ./test --runInBand",

@@ -17,6 +17,7 @@ export class ForecastController {
         await forecast.processForecastForBeaches(beaches);
       res.status(200).send(forecastForBeaches);
     } catch (error) {
+      // console.error(error);
       res.status(500).send(JSON.stringify({ error: 'Something went wrong' }));
     }
   }
