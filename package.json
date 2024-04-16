@@ -28,9 +28,11 @@
   "author": "Marlon Henrique Queroga Marques",
   "license": "MIT",
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/config": "^3.3.4",
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.12",
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/module-alias": "^2.0.4",
     "@types/mongoose": "^5.11.97",
     "@types/nock": "^11.1.0",
@@ -51,9 +53,11 @@
   "dependencies": {
     "@overnightjs/core": "^1.7.6",
     "axios": "^1.6.8",
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "config": "^3.3.11",
     "express": "^4.19.1",
+    "jsonwebtoken": "^9.0.2",
     "module-alias": "^2.2.3",
     "mongoose": "^8.3.0"
   }

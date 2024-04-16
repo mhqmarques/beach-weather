@@ -2,9 +2,10 @@ import { Controller, Post } from '@overnightjs/core';
 import { Beach } from '@src/models/beach';
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
+import { BaseController } from '.';
 
 @Controller('beaches')
-export class BeachesController {
+export class BeachesController extends BaseController {
   @Post('')
   public async create(req: Request, res: Response): Promise<void> {
     try {
@@ -12,13 +13,7 @@ export class BeachesController {
       const result = await beach.save();
       res.status(201).send(result);
     } catch (error) {
-      if (error instanceof mongoose.Error.ValidationError) {
-        const err = error as mongoose.Error.ValidationError;
-        res.status(422).send({ error: err.message });
-      } else {
-        // console.error(error);
-        res.status(500).send(JSON.stringify(error));
-      }
+      this.sendCreateOrUpdateErrorResponse(res, error);
     }
   }
 }
