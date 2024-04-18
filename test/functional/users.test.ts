@@ -1,5 +1,5 @@
 import { User } from '@src/models/user';
-import { AuthService } from '@src/services/auth';
+import { AuthService } from '@src/services/authService';
 
 describe('Users functional test', () => {
   beforeEach(async () => {
@@ -62,6 +62,46 @@ describe('Users functional test', () => {
         code: 409,
         error: 'User validation failed: email: already exists in database',
       });
+    });
+  });
+  describe('When authentication a user', () => {
+    it('Should generate a toker to a valid user', async () => {
+      const newUser = {
+        name: 'Don Corleone',
+        email: 'corleone@mail.com',
+        password: '1234',
+      };
+      await new User(newUser).save();
+      const { body } = await globalThis.testRequest
+        .post('/users/authenticate')
+        .send({ email: newUser.email, password: newUser.password });
+      expect(body).toEqual({ token: expect.any(String) });
+    });
+    it('Should return an unauthorized if the user with the provided email was not found', async () => {
+      const { status, body } = await globalThis.testRequest
+        .post('/users/authenticate')
+        .send({
+          email: 'wrong-email@email.com',
+          password: '1234',
+        });
+      expect(status).toBe(401);
+      expect(body).toEqual({ code: 401, error: 'User was not found' });
+    });
+    it('Should return an unauthorized if the user password does not match', async () => {
+      const newUser = {
+        name: 'Don Corleone',
+        email: 'corleone@mail.com',
+        password: '1234',
+      };
+      await new User(newUser).save();
+      const { status, body } = await globalThis.testRequest
+        .post('/users/authenticate')
+        .send({
+          email: newUser.email,
+          password: '7894',
+        });
+      expect(status).toBe(401);
+      expect(body).toEqual({ code: 401, error: 'Invalid Password' });
     });
   });
 });
