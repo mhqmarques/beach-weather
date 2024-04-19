@@ -1,7 +1,20 @@
 import { Beach } from '@src/models/beach';
+import { User } from '@src/models/user';
+import { AuthService } from '@src/services/authService';
 
 describe('Beaches functional tests', () => {
-  beforeAll(async () => await Beach.deleteMany({}));
+  let token: string;
+  const defaultUser = {
+    name: 'Don Corleone',
+    email: 'corleone@mail.com',
+    password: '1234',
+  };
+  beforeEach(async () => {
+    await Beach.deleteMany({});
+    await User.deleteMany({});
+    const user = await new User(defaultUser).save();
+    token = AuthService.generateToken(user.toJSON());
+  });
   describe('When creating a beach', () => {
     it('should create a beach with success', async () => {
       const newBeach = {
@@ -13,6 +26,7 @@ describe('Beaches functional tests', () => {
 
       const response = await globalThis.testRequest
         .post('/beaches')
+        .set({ 'x-access-token': token })
         .send(newBeach);
       expect(response.status).toBe(201);
       expect(response.body).toEqual(expect.objectContaining(newBeach));
@@ -28,6 +42,7 @@ describe('Beaches functional tests', () => {
 
       const response = await globalThis.testRequest
         .post('/beaches')
+        .set({ 'x-access-token': token })
         .send(newBeach);
       expect(response.status).toBe(422);
       expect(response.body).toEqual({

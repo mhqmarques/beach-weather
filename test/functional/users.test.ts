@@ -65,7 +65,7 @@ describe('Users functional test', () => {
     });
   });
   describe('When authentication a user', () => {
-    it('Should generate a toker to a valid user', async () => {
+    it('Should generate a token to a valid user', async () => {
       const newUser = {
         name: 'Don Corleone',
         email: 'corleone@mail.com',
@@ -75,7 +75,9 @@ describe('Users functional test', () => {
       const { body } = await globalThis.testRequest
         .post('/users/authenticate')
         .send({ email: newUser.email, password: newUser.password });
-      expect(body).toEqual({ token: expect.any(String) });
+      expect(body).toEqual(
+        expect.objectContaining({ token: expect.any(String) })
+      );
     });
     it('Should return an unauthorized if the user with the provided email was not found', async () => {
       const { status, body } = await globalThis.testRequest

@@ -5,13 +5,13 @@
       "mongoUrl": "mongodb://localhost:27017/surf-forecast"
     },
     "auth": {
-      "key": "some-key",
+      "key": "some-secret",
       "tokenExpiresIn": "20000000"
     },
     "resources": {
       "StormGlass": {
         "apiUrl": "https://api.stormglass.io/v2",
-        "apiToken": "api-key"
+        "apiToken": "some-token"
       }
     }
   }
