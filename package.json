@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npx tsc",
-    "start": "npm run build && node dist/src/index.js",
+    "start": "node dist/src/index.js",
     "start:dev": "ts-node-dev --transpile-only 'src/index.ts'",
     "lint": "eslint ./src ./test --ext .ts",
     "lint:fix": "eslint ./src ./test --ext .ts --fix",
