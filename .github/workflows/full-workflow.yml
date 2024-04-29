@@ -1,6 +1,10 @@
 name: Complete Workflow
 
-on: push
+on:
+  push:
+    branches:
+      - main
+      - master
 
 jobs:
   build:
@@ -29,4 +33,13 @@ jobs:
         run: npm ci
 
       - name: Run all tests
-        run: npm run test
+        run: npm test
+
+      - name: Deployment
+        uses: JorgeLNJunior/render-deploy@v1.4.4
+        with:
+          service_id: ${{ secrets.RENDER_SERVICE_ID }}
+          api_key: ${{ secrets.RENDER_API_KEY }}
+          clear_cache: true
+          wait_deploy: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
