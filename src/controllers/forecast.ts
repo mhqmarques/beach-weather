@@ -1,4 +1,5 @@
 import { ClassMiddleware, Controller, Get } from '@overnightjs/core';
+import logger from '@src/logger';
 import { authMiddleware } from '@src/middlewares/authMiddleware';
 import { Beach } from '@src/models/beach';
 import { ForecastService } from '@src/services/forecastService';
@@ -19,6 +20,7 @@ export class ForecastController {
         await forecast.processForecastForBeaches(beaches);
       res.status(200).send(forecastForBeaches);
     } catch (error) {
+      logger.error(error);
       res.status(500).send(JSON.stringify({ error: 'Something went wrong' }));
     }
   }

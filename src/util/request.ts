@@ -8,6 +8,7 @@ import axios, {
 
 export interface RequestConfig extends AxiosRequestConfig {}
 export interface ResponsePromise<T> extends AxiosPromise<T> {}
+// eslint-disable-next-line
 export interface Response<T = any> extends AxiosResponse<T> {}
 
 export class Request {

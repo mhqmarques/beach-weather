@@ -3,6 +3,7 @@ import './util/module-alias';
 import { BeachesController } from './controllers/beaches';
 import { ForecastController } from './controllers/forecast';
 import { UsersController } from './controllers/users';
+import logger from './logger';
 import { Server } from '@overnightjs/core';
 import * as database from '@src/database';
 import bodyParser from 'body-parser';
@@ -48,7 +49,9 @@ export class SetupServer extends Server {
 
   public start(): void {
     this.app.listen(this.port, () => {
-      console.info(`Server listening on port ${this.port}`);
+      logger.info(
+        `Server listening on port ${this.port} running in ${process.env.NODE_ENV} environment`
+      );
     });
   }
 }

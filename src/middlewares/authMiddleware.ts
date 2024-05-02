@@ -1,5 +1,5 @@
 import { AuthService } from '@src/services/authService';
-import { Request, Response, NextFunction } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { JsonWebTokenError } from 'jsonwebtoken';
 
 export function authMiddleware(

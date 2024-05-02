@@ -1,3 +1,4 @@
+import logger from '@src/logger';
 import { InternalError } from '@src/util/errors/internal-error';
 import * as HTTPUtil from '@src/util/request';
 import config, { IConfig } from 'config';
@@ -72,6 +73,7 @@ export class StormGlassClient {
         );
       return this.normalizedResponse(response.data);
     } catch (error) {
+      logger.error(error);
       if (error instanceof Error && HTTPUtil.Request.isRequestError(error)) {
         const err = HTTPUtil.Request.extractErrorData(error);
         throw new StormGlassResponseError(
