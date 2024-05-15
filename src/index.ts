@@ -23,12 +23,12 @@ export enum ExitedStatus {
           process.exit(ExitedStatus.Successes);
         } catch (error) {
           logger.error(`App exited with error: ${error}`);
-          process.exit(ExitedStatus.Failure);
+          process.exitCode = ExitedStatus.Failure;
         }
       });
     });
   } catch (error) {
     logger.error(`App exited with error: ${error}`);
-    process.exit(ExitedStatus.Failure);
+    process.exitCode = ExitedStatus.Failure;
   }
 })();

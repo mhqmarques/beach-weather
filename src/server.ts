@@ -1,5 +1,6 @@
 import './util/module-alias';
 
+import { ExitedStatus } from '.';
 import { BeachesController } from './controllers/beaches';
 import { ForecastController } from './controllers/forecast';
 import { UsersController } from './controllers/users';
@@ -7,9 +8,9 @@ import logger from './logger';
 import { Server } from '@overnightjs/core';
 import * as database from '@src/database';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import { Application } from 'express';
-import { ExitedStatus } from '.';
-
+import pinoHttp from 'pino-http';
 export class SetupServer extends Server {
   constructor(private port = 3000) {
     super();
@@ -23,6 +24,12 @@ export class SetupServer extends Server {
 
   private setupExpress(): void {
     this.app.use(bodyParser.json());
+    this.app.use(
+      cors({
+        origin: '*',
+      })
+    );
+    this.app.use(pinoHttp());
   }
 
   private setupControllers(): void {
