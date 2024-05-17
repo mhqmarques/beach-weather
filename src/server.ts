@@ -29,7 +29,9 @@ export class SetupServer extends Server {
         origin: '*',
       })
     );
-    this.app.use(pinoHttp());
+    if (globalThis.nodeEnv === 'production') {
+      this.app.use(pinoHttp());
+    }
   }
 
   private setupControllers(): void {
