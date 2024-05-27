@@ -57,20 +57,6 @@ export class SetupServer extends Server {
     await database.close();
   }
 
-  public listen(): void {
-    process.on('unhandledRejection', (promise, reason) => {
-      logger.error(
-        `App exiting due to an unhandled promise: ${promise} and reason: ${reason}`
-      );
-      throw reason;
-    });
-
-    process.on('uncaughtException', (error) => {
-      logger.error(`App exiting due to an uncaught exception: ${error}`);
-      process.exit(ExitedStatus.Failure);
-    });
-  }
-
   public start(): void {
     this.app.listen(this.port, () => {
       logger.info(

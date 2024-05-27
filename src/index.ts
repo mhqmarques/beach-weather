@@ -7,12 +7,23 @@ export enum ExitedStatus {
   Successes = 0,
 }
 
+process.on('unhandledRejection', (promise, reason) => {
+  logger.error(
+    `App exiting due to an unhandled promise: ${promise} and reason: ${reason}`
+  );
+  throw reason;
+});
+
+process.on('uncaughtException', (error) => {
+  logger.error(`App exiting due to an uncaught exception: ${error}`);
+  process.exit(ExitedStatus.Failure);
+});
+
 (async (): Promise<void> => {
   try {
     const server = new SetupServer(config.get('App.port'));
     await server.initServer();
     server.start();
-    server.listen();
 
     const exitSignals: NodeJS.Signals[] = ['SIGINT', 'SIGTERM', 'SIGQUIT'];
     exitSignals.map((sig) => {
