@@ -11,7 +11,7 @@ describe('StormGlass Client', () => {
   >;
   const mockedRequest = new HTTPUtil.Request() as jest.Mocked<HTTPUtil.Request>;
 
-  it('should return the normalezed forecast from the StormGlass service', async () => {
+  it('should return the normalized forecast from the StormGlass service', async () => {
     const lat = -33.792726;
     const lng = 151.289824;
 

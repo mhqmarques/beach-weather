@@ -9,7 +9,7 @@
       "mongoUrl": "mongodb://localhost:27017/surf-forecast-test"
     },
     "logger": {
-      "enabled": true
+      "enabled": false
     }
   }
 }
